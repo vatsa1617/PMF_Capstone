@@ -1,0 +1,443 @@
+# PMF Pipeline Orchestration Configuration
+# Defines the workflow, dependencies, scheduling, and state management
+
+version: "1.0"
+last_updated: "2026-06-14"
+
+# ============================================================================
+# PIPELINE METADATA
+# ============================================================================
+pipeline:
+  name: "PMF Heat Map Weekly Pipeline"
+  description: "Four-agent pipeline to ingest, normalize, score, and publish PMF decisions"
+  schedule: "0 9 * * MON"  # Monday 9 AM (cron format)
+  schedule_description: "Weekly on Monday morning"
+  timeout_hours: 4
+  notification_email: "pmf-team@company.com"
+
+# ============================================================================
+# AGENT DEFINITIONS
+# ============================================================================
+agents:
+  agent1_ingest:
+    name: "Agent 1: Ingest"
+    description: "Collect evidence from GDELT news, SEC tickers, and other sources"
+    type: "ingest"
+    
+    tasks:
+      - task_id: "agent1_gdelt"
+        name: "GDELT News Collection"
+        script: "project/agent1.py"
+        input_files: []
+        output_files: ["output/agent1_evidence.csv"]
+        timeout_minutes: 30
+        retry_count: 3
+        required: true
+        description: "Pull packaging news articles from GDELT API"
+      
+      - task_id: "agent1_yfinance"
+        name: "Company Packaging Need Discovery"
+        script: "project/agent1_yfinance.py"
+        input_files: []
+        output_files: ["output/agent1_packaging_buyer_candidates.csv"]
+        timeout_minutes: 60
+        retry_count: 2
+        required: false
+        description: "Score companies for packaging need based on industry profile"
+    
+    dependencies: []
+    on_success: "mark_complete"
+    on_failure: "alert_and_continue"  # Continue even if optional tasks fail
+
+  agent2_sec:
+    name: "Agent 2: SEC Filing Analysis"
+    description: "Search SEC filings for packaging pressure signals"
+    type: "normalize"
+    
+    tasks:
+      - task_id: "agent2_sec_search"
+        name: "SEC Packaging Pressure Search"
+        script: "project/agent2_SEC.py"
+        input_files: ["output/agent1_packaging_buyer_candidates.csv"]
+        output_files: ["output/agent2_sec_packaging_pressure_hits.csv"]
+        timeout_minutes: 120
+        retry_count: 2
+        required: false
+        description: "Search 10-K/10-Q/8-K filings for packaging signals"
+    
+    dependencies: ["agent1_ingest"]
+    on_success: "mark_complete"
+    on_failure: "alert_and_continue"  # Optional agent
+
+  agent3_esg:
+    name: "Agent 3: ESG/Sustainability Reports"
+    description: "Scan ESG reports for packaging commitments"
+    type: "normalize"
+    
+    tasks:
+      - task_id: "agent3_esg_search"
+        name: "ESG Packaging Signals"
+        script: "project/agent3_ESG.py"
+        input_files: ["output/agent1_packaging_buyer_candidates.csv"]
+        output_files: ["output/agent3_esg_packaging_hits.csv"]
+        timeout_minutes: 120
+        retry_count: 2
+        required: false
+        description: "Search ESG/sustainability reports for packaging signals"
+        notes: "Requires SERPAPI_KEY environment variable"
+    
+    dependencies: ["agent1_ingest"]
+    on_success: "mark_complete"
+    on_failure: "alert_and_continue"  # Optional agent
+
+  agent4_score:
+    name: "Agent 4: Score & Publish"
+    description: "Score all cells and produce PMF heat map"
+    type: "score"
+    
+    tasks:
+      - task_id: "agent4_consolidate_and_score"
+        name: "Consolidate Evidence & Score Cells"
+        script: "agent4.py"
+        input_files: [
+          "output/agent1_evidence.csv",
+          "output/agent2_sec_packaging_pressure_hits.csv",
+          "output/agent3_esg_packaging_hits.csv"
+        ]
+        output_files: [
+          "output/agent4_pmf_matrix.csv",
+          "output/agent4_audit_trail.json",
+          "output/agent4_summary.json"
+        ]
+        timeout_minutes: 30
+        retry_count: 2
+        required: true
+        description: "Score all Market×Technology cells using consolidated evidence"
+    
+    dependencies: ["agent1_ingest", "agent2_sec", "agent3_esg"]
+    on_success: "mark_complete"
+    on_failure: "stop"  # Critical agent - stop if it fails
+
+# ============================================================================
+# EXECUTION MODES
+# ============================================================================
+execution_modes:
+  
+  # Full weekly run
+  full_pipeline:
+    name: "Full Weekly Pipeline"
+    description: "Run all agents from scratch (fresh data collection)"
+    agents: ["agent1_ingest", "agent2_sec", "agent3_esg", "agent4_score"]
+    skip_cache: true
+    estimated_duration_minutes: 240
+  
+  # Incremental update (assume agents 1-3 ran successfully)
+  incremental:
+    name: "Incremental Score Update"
+    description: "Assume Agents 1-3 complete; just re-score with new weights/config"
+    agents: ["agent4_score"]
+    skip_cache: false
+    estimated_duration_minutes: 30
+    notes: "Useful for tuning scoring parameters or config changes"
+  
+  # Debug single agent
+  agent_debug:
+    name: "Debug Single Agent"
+    description: "Run one agent in isolation with verbose logging"
+    agents: ["user_specified"]
+    skip_cache: true
+    verbose: true
+    estimated_duration_minutes: 60
+
+# ============================================================================
+# STATE MANAGEMENT
+# ============================================================================
+state_management:
+  # Where to store execution state
+  state_file: "state/pipeline_state.json"
+  
+  # What to track
+  track_items:
+    - execution_timestamp
+    - agent_status (pending, running, success, failed, skipped)
+    - input_file_hashes
+    - output_file_counts
+    - error_messages
+    - execution_duration
+    - user_triggered_by
+  
+  # Caching strategy
+  cache_strategy: "smart"
+  cache_dir: "state/cache/"
+  
+  cache_invalidation:
+    # Invalidate cache if source data changes
+    - invalidate_on_input_change: true
+    - invalidate_on_config_change: true
+    - max_cache_age_days: 7
+    - force_refresh_on_manual_trigger: false
+  
+  # State retention
+  keep_historical_state: true
+  max_state_history: 12  # Keep 12 weeks of history
+
+# ============================================================================
+# ERROR HANDLING & RETRY STRATEGY
+# ============================================================================
+error_handling:
+  
+  # Exponential backoff for retries
+  retry_strategy:
+    base_delay_seconds: 10
+    max_delay_seconds: 300
+    exponential_base: 2  # Each retry: delay = base × (2^attempt_number)
+  
+  # Which errors are retryable
+  retryable_errors:
+    - "HTTPError 429"          # Rate limit
+    - "HTTPError 500"          # Server error
+    - "HTTPError 502"          # Bad gateway
+    - "HTTPError 503"          # Service unavailable
+    - "Timeout"                # Network timeout
+    - "ConnectionError"        # Network connection
+    - "RemoteDisconnected"     # Server closed connection
+  
+  # Non-retryable errors (fail immediately)
+  fatal_errors:
+    - "FileNotFoundError"
+    - "ConfigurationError"
+    - "AuthenticationError"
+    - "InvalidInputError"
+  
+  # Alert thresholds
+  alert_on:
+    - any_critical_failure: true
+    - multiple_retries: true  # Alert if any task retries > 2 times
+    - timeout: true
+    - agent_duration_exceeds_sla: true
+
+# ============================================================================
+# LOGGING & MONITORING
+# ============================================================================
+logging:
+  
+  # Log levels
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # Where to log
+  outputs:
+    - type: "file"
+      path: "logs/pipeline_{timestamp}.log"
+      level: "DEBUG"
+    
+    - type: "console"
+      level: "INFO"
+    
+    - type: "cloudwatch"
+      enabled: false
+      log_group: "/pmf-pipeline"
+      level: "WARNING"
+  
+  # What to log
+  log_items:
+    - agent_start_time
+    - agent_end_time
+    - task_duration
+    - input_file_info (count, size, hash)
+    - output_file_info (count, size)
+    - error_details
+    - retry_attempts
+    - resource_usage (CPU, memory)
+
+monitoring:
+  
+  # SLA tracking
+  sla:
+    full_pipeline_target_minutes: 240
+    agent1_target_minutes: 90
+    agent2_target_minutes: 120
+    agent3_target_minutes: 120
+    agent4_target_minutes: 30
+  
+  # Health checks
+  health_checks:
+    - check_disk_space: true
+      min_free_gb: 5
+    
+    - check_network_connectivity: true
+      test_urls: ["https://api.gdeltproject.org", "https://data.sec.gov"]
+    
+    - check_api_keys: true
+      required_env_vars: ["SERPAPI_KEY"]
+    
+    - check_output_quality: true
+      min_evidence_items: 10
+
+# ============================================================================
+# NOTIFICATIONS & REPORTING
+# ============================================================================
+notifications:
+  
+  # Slack notifications
+  slack:
+    enabled: false
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+    events:
+      - "pipeline_started"
+      - "pipeline_completed"
+      - "pipeline_failed"
+      - "agent_failed"
+      - "long_duration_warning"
+    
+    message_template: |
+      PMF Pipeline Update: {event}
+      Status: {status}
+      Duration: {duration_minutes} minutes
+      Details: {details}
+  
+  # Email notifications
+  email:
+    enabled: true
+    recipients: ["pmf-team@company.com"]
+    events:
+      - "pipeline_failed"
+      - "critical_error"
+    
+    include_attachments:
+      - agent4_summary.json
+      - error_log_excerpt
+  
+  # Dashboard / Metrics
+  metrics:
+    enabled: true
+    backend: "prometheus"
+    metrics_to_track:
+      - pipeline_duration_seconds
+      - agent_success_rate
+      - evidence_items_collected
+      - cells_scored
+      - avg_pmf_score
+      - avg_confidence_score
+
+# ============================================================================
+# SCHEDULING & AUTOMATION
+# ============================================================================
+scheduling:
+  
+  # Cron schedule (defaults to Monday 9 AM)
+  cron: "0 9 * * MON"
+  
+  # Timezone
+  timezone: "US/Eastern"
+  
+  # Manual trigger capability
+  allow_manual_trigger: true
+  
+  # Pre-run checklist
+  pre_run_checks:
+    - verify_configuration_valid: true
+    - check_dependencies_available: true
+    - backup_state: true
+    - check_disk_space: true
+  
+  # Post-run actions
+  post_run_actions:
+    - archive_logs: true
+    - update_dashboard: true
+    - cleanup_temp_files: true
+    - backup_outputs: true
+
+# ============================================================================
+# INTEGRATION POINTS
+# ============================================================================
+integrations:
+  
+  # UI/Dashboard integration
+  dashboard:
+    enabled: true
+    export_format: "json"
+    export_path: "ui/data/"
+    update_frequency_minutes: 5  # Near real-time updates during run
+  
+  # Database storage
+  database:
+    enabled: false
+    type: "postgresql"
+    host: "${DB_HOST}"
+    port: 5432
+    database: "pmf_pipeline"
+    tables:
+      - "execution_history"
+      - "evidence_items"
+      - "cell_scores"
+      - "audit_trails"
+  
+  # File export
+  file_export:
+    enabled: true
+    formats: ["csv", "json", "xlsx"]
+    destination: "output/"
+    retention_days: 90
+  
+  # External APIs
+  external_apis:
+    gdelt:
+      enabled: true
+      base_url: "https://api.gdeltproject.org/api/v2/doc/doc"
+      rate_limit_requests_per_minute: 10
+    
+    sec_filings:
+      enabled: true
+      base_url: "https://data.sec.gov"
+      rate_limit_requests_per_second: 1
+    
+    serpapi:
+      enabled: false  # Set to true if ESG search enabled
+      api_key: "${SERPAPI_KEY}"
+      rate_limit_requests_per_second: 1
+
+# ============================================================================
+# DEVELOPMENT & TESTING
+# ============================================================================
+development:
+  
+  # Test mode (smaller datasets)
+  test_mode:
+    enabled: false
+    agent1_sample_size: 100      # Only pull 100 companies (vs 11000)
+    agent1_gdelt_max_records: 10 # Only 10 news per query
+    agent2_max_companies: 10     # Only 10 companies
+    agent3_max_companies: 5      # Only 5 companies
+  
+  # Dry run (plan without executing)
+  dry_run:
+    enabled: false
+    description: "Show what would execute without actually running tasks"
+  
+  # Debug mode
+  debug:
+    enabled: false
+    verbose_logging: true
+    keep_intermediate_files: true
+    print_config_on_start: true
+
+# ============================================================================
+# CHANGE CONTROL
+# ============================================================================
+change_control:
+  
+  # Configuration versioning
+  config_version: "1.0"
+  last_modified: "2026-06-14"
+  modified_by: "pmf-team"
+  
+  # Approval workflow
+  require_approval_for:
+    - agent_enable_disable
+    - major_weight_changes
+    - retry_strategy_changes
+    - alert_threshold_changes
+  
+  # Rollback capability
+  rollback_enabled: true
+  max_rollback_versions: 5

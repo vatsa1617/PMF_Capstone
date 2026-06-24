@@ -1,0 +1,454 @@
+# Agent 4 Scoring Configuration (v1)
+# All weights, thresholds, and scoring parameters for PMF & Confidence calculation
+
+version: "1.0"
+last_updated: "2026-06-14"
+
+# ============================================================================
+# SECTION 1: PMF Component Weights
+# ============================================================================
+pmf_weights:
+  desirability: 0.30      # Market pull, customer validation, regulatory drivers
+  feasibility: 0.30       # Technical viability under A6 conditions-of-use
+  viability: 0.25         # Cost, scale, capacity economics
+  risk_penalty: 0.15      # Regulatory/end-of-life/reputational barriers
+
+# ============================================================================
+# SECTION 2: Signal Type Base Weights (A3)
+# These are the starting points before credibility & recency multipliers
+# ============================================================================
+signal_type_weights:
+  "launch_commercialization":
+    base: 20
+    component: ["desirability", "viability"]  # Which sub-scores it feeds
+    description: "Product launch or commercial availability confirmed"
+  
+  "pilot_trial_customer_validation":
+    base: 18
+    component: ["feasibility", "desirability"]
+    description: "Pilot results, customer trials, validation data"
+  
+  "capacity_expansion_capex":
+    base: 16
+    component: ["viability"]
+    description: "Capacity investment, capital expenditure, scaling commitment"
+  
+  "partnership_joint_development":
+    base: 14
+    component: ["viability", "feasibility"]
+    description: "Partnership, JV, collaborative development"
+  
+  "regulatory_milestone":
+    base: 14
+    component: ["desirability"]
+    description: "Regulatory approval, compliance milestone, ban/deadline"
+  
+  "end_of_life_infrastructure":
+    base: 10
+    component: ["viability"]
+    description: "Recycling/composting infrastructure signal"
+  
+  "recyclability_repulpability_validation":
+    base: 12
+    component: ["feasibility"]
+    description: "Third-party testing, recyclability validation"
+  
+  "material_performance_claim":
+    base: 10
+    component: ["feasibility"]
+    description: "Technical performance claim (barrier, durability, etc.)"
+  
+  "cost_yield_improvement":
+    base: 10
+    component: ["viability"]
+    description: "Cost reduction, yield improvement, efficiency gain"
+  
+  "patent_ip":
+    base: 8
+    component: ["feasibility"]
+    description: "Patent filing, intellectual property"
+  
+  "manda_licensing":
+    base: 12
+    component: ["viability", "feasibility"]
+    description: "M&A, licensing agreement, acquisition"
+  
+  "risk_controversy":
+    base: 0  # Risk items subtract from score (see risk_penalty section)
+    component: ["risk_penalty"]
+    description: "Regulatory risk, controversy, end-of-life limitation, adoption friction"
+
+# ============================================================================
+# SECTION 3: Credibility Multipliers by Source Role (A4)
+# ============================================================================
+credibility_multipliers:
+  "certification_testing_lab":
+    multiplier: 1.2
+    description: "Third-party testing lab, certification body"
+  
+  "regulatory_standards_body":
+    multiplier: 1.2
+    description: "Regulator, standards body (ISO, EPA, etc.)"
+  
+  "brand_owner_cpo":
+    multiplier: 1.1
+    description: "Brand owner, CPG company, major retailer"
+  
+  "converter_manufacturer":
+    multiplier: 1.0
+    description: "Packaging converter, OEM, manufacturer"
+  
+  "waste_recycling_operator_mrf":
+    multiplier: 1.0
+    description: "Waste processor, recycling operator, MRF"
+  
+  "material_supplier_technology_provider":
+    multiplier: 0.9
+    description: "Material supplier, technology provider (slight discount for bias)"
+  
+  "investor_vc":
+    multiplier: 0.8
+    description: "Investor, VC (more speculative)"
+  
+  "academic_research":
+    multiplier: 1.1
+    description: "University, academic research (credible but not yet commercialized)"
+  
+  "industry_publication_analyst":
+    multiplier: 0.85
+    description: "Industry publication, analyst report (secondary source)"
+  
+  "unknown":
+    multiplier: 0.7
+    description: "Unknown or unclassified source"
+
+# ============================================================================
+# SECTION 4: Recency Multipliers
+# ============================================================================
+recency_multipliers:
+  recent:  # <= 90 days
+    days_min: 0
+    days_max: 90
+    multiplier: 1.0
+    flag: null
+  
+  moderate:  # 91-365 days
+    days_min: 91
+    days_max: 365
+    multiplier: 0.8
+    flag: null
+  
+  old:  # 366-730 days
+    days_min: 366
+    days_max: 730
+    multiplier: 0.6
+    flag: "stale"
+  
+  very_old:  # > 730 days
+    days_min: 731
+    days_max: 999999
+    multiplier: 0.3
+    flag: "very_stale"
+
+# ============================================================================
+# SECTION 5: Risk Penalty Weights
+# How much each type of risk reduces the PMF score
+# ============================================================================
+risk_penalties:
+  "regulatory_ban_upcoming":
+    penalty: 25
+    description: "Impending regulatory ban on incumbent material"
+  
+  "regulatory_risk_non_compliance":
+    penalty: 20
+    description: "Regulatory compliance barrier for solution"
+  
+  "end_of_life_limitation":
+    penalty: 15
+    description: "Limited recyclability/composting infrastructure"
+  
+  "cost_uncompetitive":
+    penalty: 18
+    description: "Significant cost disadvantage vs incumbent"
+  
+  "technical_barrier":
+    penalty: 12
+    description: "Unresolved technical performance gap"
+  
+  "supply_chain_risk":
+    penalty: 10
+    description: "Supply, capacity, or manufacturing risk"
+  
+  "reputational_concern":
+    penalty: 8
+    description: "Environmental or reputational concern"
+  
+  "adoption_friction":
+    penalty: 10
+    description: "Consumer or customer adoption friction"
+
+# ============================================================================
+# SECTION 6: Feasibility Caps (Critical A6 Unknowns)
+# ============================================================================
+feasibility_cap:
+  # Feasibility is capped if critical unknowns remain unresolved
+  critical_unknowns:
+    - "food_contact_safe"
+    - "temperature_exposure"
+    - "fatty_food_contact"
+    - "sealing_durability"
+    - "barrier_performance"
+  
+  penalty_per_unknown: 15       # Each unknown caps feasibility by this much
+  bonus_per_resolved: 5         # Resolve an unknown = +5 to confidence
+
+# ============================================================================
+# SECTION 7: Confidence Scoring Penalties & Bonuses
+# Start at 100, subtract penalties, add bonuses
+# ============================================================================
+confidence_scoring:
+  starting_score: 100
+  
+  penalties:
+    unknown_conditions_of_use:
+      penalty: -5
+      description: "Per non-critical A6 unknown"
+      multiplier: 1  # Applied once per unknown
+    
+    critical_unknown_conditions:
+      penalty: -10
+      description: "Per critical A6 unknown (food contact, temp, etc.)"
+      multiplier: 1
+    
+    evidence_sparsity_very_low:
+      threshold: 1  # < 2 items
+      penalty: -15
+      description: "Fewer than 2 evidence items"
+    
+    evidence_sparsity_low:
+      threshold: 4  # 2-4 items
+      penalty: -5
+      description: "Only 2-4 evidence items (borderline)"
+    
+    single_source_name:
+      penalty: -10
+      description: "All evidence from one source organization"
+      applicable: true
+    
+    single_credibility_role:
+      penalty: -10
+      description: "All evidence from one value-chain role (A4)"
+      applicable: true
+    
+    staleness_majority:
+      threshold: 0.5  # If > 50% of evidence is > 365 days old
+      penalty: -10
+      description: "More than half of evidence older than 1 year"
+    
+    low_mapping_confidence:
+      threshold: 0.7  # If avg mapping_confidence < 0.7
+      penalty: -10
+      description: "Cell mapping confidence below 0.7 (ambiguous cell assignment)"
+    
+    contradictory_evidence:
+      penalty: -15
+      description: "Significant evidence contradiction flagged"
+      applicable: true
+  
+  bonuses:
+    independent_validation:
+      bonus: 5
+      description: "Independent validation from Testing Lab or Standards Body"
+      applicable: true
+    
+    diversity_bonus:
+      bonus: 5
+      description: "Evidence from 3+ different source roles"
+      applicable: true
+    
+    recent_evidence:
+      bonus: 3
+      description: "Majority of evidence recent (<=90 days)"
+      applicable: true
+
+# ============================================================================
+# SECTION 8: Score Interpretation Bands
+# ============================================================================
+pmf_score_bands:
+  low:
+    min: 0
+    max: 39
+    label: "Low"
+    shift_expectation: "Major Shift Away"
+    recommendation: "Do not prioritize"
+    color: "#d32f2f"  # Red
+  
+  medium_low:
+    min: 40
+    max: 54
+    label: "Medium-Low"
+    shift_expectation: "Minor Shift Away"
+    recommendation: "Monitor risks closely"
+    color: "#f57c00"  # Orange
+  
+  medium:
+    min: 55
+    max: 65
+    label: "Medium"
+    shift_expectation: "No Shift"
+    recommendation: "Tailwinds & headwinds balanced"
+    color: "#fbc02d"  # Yellow
+  
+  medium_high:
+    min: 66
+    max: 75
+    label: "Medium-High"
+    shift_expectation: "Minor Shift Toward"
+    recommendation: "Prioritize targeted learning"
+    color: "#689f38"  # Light Green
+  
+  high:
+    min: 76
+    max: 100
+    label: "High"
+    shift_expectation: "Major Shift Toward"
+    recommendation: "Prioritize trials & commercialization"
+    color: "#2e7d32"  # Dark Green
+
+confidence_score_bands:
+  low:
+    min: 0
+    max: 39
+    label: "Low Confidence"
+    interpretation: "Highly uncertain; directional only"
+    action: "Prioritize evidence acquisition"
+  
+  medium:
+    min: 40
+    max: 69
+    label: "Medium Confidence"
+    interpretation: "Usable for working decisions with caveats"
+    action: "Refine with targeted evidence"
+  
+  high:
+    min: 70
+    max: 100
+    label: "High Confidence"
+    interpretation: "Well-substantiated by diverse evidence"
+    action: "Suitable for resource allocation"
+
+# ============================================================================
+# SECTION 9: Controlled Vocabulary (Taxonomies A1-A6)
+# ============================================================================
+taxonomies:
+  # Market taxonomy (A1) - 12 primary segments
+  markets:
+    - "Food - Ambient Snacks & Bakery"
+    - "Food - Frozen & Refrigerated"
+    - "Food - Confectionery / Cookies"
+    - "Food - Ready Meals / Heat-and-eat"
+    - "Beverage - Multipacks & Secondary"
+    - "Home Care - Detergent / Pods / Refills"
+    - "Personal Care - Hair / Skin / Deodorant"
+    - "Health - OTC / Medical Device Secondary"
+    - "E-commerce - SIOC / Protective"
+    - "Pet Food - Dry & Wet"
+    - "QSR / Foodservice - To-go / Hot-hold / Grease"
+    - "Industrial / Specialty - Chemicals / Aggressive"
+  
+  # Technology taxonomy (A2) - 16+ platform categories
+  technologies:
+    - "Molded Fiber - Food-contact trays"
+    - "Molded Fiber - Clamshells & hinged"
+    - "Molded Fiber - Cups/lids & drinkware"
+    - "Paper-based Flexibles - High barrier"
+    - "Paper-based Flexibles - Recyclable coatings"
+    - "Paper Canisters - Rigid paper"
+    - "Paperboard Cartons - Barrier & grease"
+    - "Dispersion/Water-based coatings"
+    - "Bio-based / Biodegradable coatings"
+    - "Mono-material simplification"
+    - "Recycled content solutions"
+    - "Compostable materials"
+    - "Rigid Plastic - Conventional (baseline)"
+    - "Flexible Plastic - Conventional (baseline)"
+    - "Glass - Conventional (baseline)"
+    - "Metal - Conventional (baseline)"
+  
+  # Signal types (A3) - see signal_type_weights above
+  signal_types:
+    - "launch_commercialization"
+    - "pilot_trial_customer_validation"
+    - "capacity_expansion_capex"
+    - "partnership_joint_development"
+    - "regulatory_milestone"
+    - "end_of_life_infrastructure"
+    - "recyclability_repulpability_validation"
+    - "material_performance_claim"
+    - "cost_yield_improvement"
+    - "patent_ip"
+    - "manda_licensing"
+    - "risk_controversy"
+  
+  # Value-chain roles (A4) - see credibility_multipliers above
+  value_chain_roles:
+    - "certification_testing_lab"
+    - "regulatory_standards_body"
+    - "brand_owner_cpo"
+    - "converter_manufacturer"
+    - "waste_recycling_operator_mrf"
+    - "material_supplier_technology_provider"
+    - "investor_vc"
+    - "academic_research"
+    - "industry_publication_analyst"
+    - "unknown"
+  
+  # Performance claim tags (A5)
+  performance_claims:
+    - "OTR"           # Oxygen transmission rate
+    - "WVTR"          # Water vapor transmission rate
+    - "grease_resistance"
+    - "compostability"
+    - "recyclability"
+    - "repulpability"
+    - "temperature_tolerance"
+    - "sealing_performance"
+    - "transparency"
+    - "strength_stiffness"
+    - "weight_reduction"
+    - "cost_parity"
+    - "food_contact_safe"
+  
+  # Conditions-of-use template (A6)
+  conditions_of_use:
+    - "food_contact_required"
+    - "temperature_exposure"
+    - "fatty_food_contact"
+    - "sealing_required"
+    - "barrier_performance_target"
+    - "shelf_life_requirement"
+    - "end_of_life_scenario"
+    - "regulatory_compliance"
+
+# ============================================================================
+# SECTION 10: Scoring Engine Parameters
+# ============================================================================
+engine_params:
+  # Data quality gates
+  min_evidence_items: 1        # Minimum items to calculate a score (0 = empty cell)
+  max_pmf_score: 100
+  min_pmf_score: 0
+  max_confidence_score: 100
+  min_confidence_score: 0
+  
+  # Cell calculation
+  calculate_empty_cells: false  # If false, cells with 0 evidence remain empty
+  
+  # Audit logging
+  log_all_calculations: true    # Store weight calculations for every evidence item
+  log_confidence_penalties: true
+  
+  # Export
+  include_component_breakdown: true  # Include Des/Feas/Viab/Risk sub-scores in output
+  include_evidence_details: true     # Include full evidence item details
+  include_penalties: true            # Include confidence penalty breakdown

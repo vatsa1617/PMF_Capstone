@@ -1,0 +1,911 @@
+{
+  "export_timestamp": "2026-06-14T19:51:25.350056",
+  "config_version": "1.0",
+  "num_cells": 6,
+  "cells": {
+    "(not detected \u2014 see source)|Recyclability enabling tech (de-inking, wash-off, adhesive releasability)": {
+      "market": "(not detected \u2014 see source)",
+      "technology": "Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 100,
+      "num_evidence_items": 31,
+      "evidence_ids": [
+        "EV-2F7A957B",
+        "EV-9408607F",
+        "EV-8909A31D",
+        "EV-DD039DC0",
+        "EV-B5CD6512",
+        "EV-9FAF3F70",
+        "EV-FABAFE8A",
+        "EV-B5CD6512",
+        "EV-9BD06BCF",
+        "EV-C84E0664",
+        "EV-DF935C53",
+        "EV-7CD146DF",
+        "EV-D808DB02",
+        "EV-8839C32E",
+        "EV-8A8166A5",
+        "EV-DC4A26C3",
+        "EV-89DB0DBD",
+        "EV-5EF97A5A",
+        "EV-A00DE42F",
+        "EV-F4B46EA5",
+        "EV-3A62D48A",
+        "EV-899FF911",
+        "EV-11ED248F",
+        "EV-38597C75",
+        "EV-E36F528B",
+        "EV-53A3E4E0",
+        "EV-7231F849",
+        "EV-40E6117C",
+        "EV-F577AEFE",
+        "EV-5BDFBAA9",
+        "EV-C7896E37"
+      ],
+      "confidence_penalties": {},
+      "confidence_bonuses": {
+        "diversity": 5,
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "High Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.329487",
+      "detailed_audit": {
+        "cell": "(not detected \u2014 see source) \u00d7 Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+        "timestamp": "2026-06-14T19:51:25.329487",
+        "num_evidence_items": 31,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {},
+          "bonuses": {
+            "diversity": 5,
+            "recency": 3
+          },
+          "total_confidence": 100
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-2F7A957B",
+            "source": "Packaging Europe",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Packaging Europe brings its readers latest packaging technology, design and innovation news updates ..."
+          },
+          {
+            "evidence_id": "EV-9408607F",
+            "source": "Packaging Europe",
+            "signal_type": "Regulatory milestone",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe listing] How the packaging industry is embracing intelligent sorting"
+          },
+          {
+            "evidence_id": "EV-8909A31D",
+            "source": "Packaging Europe",
+            "signal_type": "Regulatory milestone",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe listing] Packaging Europe\u2019s reflections on interpack 2026"
+          },
+          {
+            "evidence_id": "EV-DD039DC0",
+            "source": "Packaging Europe",
+            "signal_type": "Regulatory milestone",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe listing] How is the Strait of Hormuz crisis impacting European plastics recyc..."
+          },
+          {
+            "evidence_id": "EV-B5CD6512",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Patent / IP",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 News listing] Disposable baby diapers recycled into pyrolysis oils to produ..."
+          },
+          {
+            "evidence_id": "EV-9FAF3F70",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Sustainable packaging innovation and green technologies cutting waste and reducing energy consumptio..."
+          },
+          {
+            "evidence_id": "EV-FABAFE8A",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] The ultimate guide to packaging innovatio..."
+          },
+          {
+            "evidence_id": "EV-B5CD6512",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] Disposable baby diapers recycled into pyr..."
+          },
+          {
+            "evidence_id": "EV-9BD06BCF",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] Fold-and-squeeze paper pack dispenses 98%..."
+          },
+          {
+            "evidence_id": "EV-C84E0664",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] View All Sustainability Articles"
+          },
+          {
+            "evidence_id": "EV-DF935C53",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] Tracking the biggest sustainable packagin..."
+          },
+          {
+            "evidence_id": "EV-7CD146DF",
+            "source": "AF&PA \u2013 Industry Resources",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "The Voluntary Standard is an industry-supported set of test protocols to evaluate the repulpability ..."
+          },
+          {
+            "evidence_id": "EV-D808DB02",
+            "source": "AF&PA \u2013 Industry Resources",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From AF&PA \u2013 Industry Resources listing] Handout - Decades of Commitment to Improve Paper Recycling"
+          },
+          {
+            "evidence_id": "EV-8839C32E",
+            "source": "AF&PA \u2013 Industry Resources",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From AF&PA \u2013 Industry Resources listing] Where Recycled Paper Goes Graph"
+          },
+          {
+            "evidence_id": "EV-8A8166A5",
+            "source": "APR Design\u00ae Guide Overview",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Waste/Recycling Operator / MRF",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "The APR Design\u00ae Guide offers extensive design guidance and testing protocols, enabling you to assess..."
+          },
+          {
+            "evidence_id": "EV-DC4A26C3",
+            "source": "APR Design\u00ae Guide Overview",
+            "signal_type": "Recyclability / repulpability validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From APR Design\u00ae Guide Overview listing] Get the Recyclability Readiness Guide"
+          },
+          {
+            "evidence_id": "EV-89DB0DBD",
+            "source": "How2Recycle (GreenBlue)",
+            "signal_type": "Recyclability / repulpability validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Recycling can be challenging. Our label is based on nationally harmonized data and provides consiste..."
+          },
+          {
+            "evidence_id": "EV-5EF97A5A",
+            "source": "How2Recycle (GreenBlue)",
+            "signal_type": "Recyclability / repulpability validation",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From How2Recycle (GreenBlue) listing] More About Recycling"
+          },
+          {
+            "evidence_id": "EV-A00DE42F",
+            "source": "Sustainable Packaging Coalition (SPC / GreenBlue)",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Sustainable Packaging Coalition (SPC / GreenBlue) listing] Consumer Education Collaborative In..."
+          },
+          {
+            "evidence_id": "EV-F4B46EA5",
+            "source": "U.S. EPA \u2013 Sustainable Materials Management",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 3961,
+            "final_weight": 0.0,
+            "excerpt": "National Strategy to Prevent Plastic Pollution On November 21, EPA published the \"National Strategy ..."
+          },
+          {
+            "evidence_id": "EV-3A62D48A",
+            "source": "U.S. EPA \u2013 Sustainable Materials Management",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 3961,
+            "final_weight": 0.0,
+            "excerpt": "[From U.S. EPA \u2013 Sustainable Materials Management listing] \"National Strategy to Prevent Plastic Pol..."
+          },
+          {
+            "evidence_id": "EV-899FF911",
+            "source": "U.S. EPA \u2013 Sustainable Materials Management",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 3961,
+            "final_weight": 0.0,
+            "excerpt": "[From U.S. EPA \u2013 Sustainable Materials Management listing] Read about America Recycles Day."
+          },
+          {
+            "evidence_id": "EV-11ED248F",
+            "source": "U.S. EPA \u2013 Sustainable Materials Management",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 3961,
+            "final_weight": 0.0,
+            "excerpt": "[From U.S. EPA \u2013 Sustainable Materials Management listing] \u201cNational Strategy for Reducing Food Loss..."
+          },
+          {
+            "evidence_id": "EV-38597C75",
+            "source": "Oregon DEQ \u2013 Recycling Modernization Act / Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Your browser is out-of-date! It has known security flaws and may not display all features of this an..."
+          },
+          {
+            "evidence_id": "EV-E36F528B",
+            "source": "CalRecycle \u2013 SB 54 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "SB 54 establishes a new extended producer responsibility (EPR) program to manage packaging and singl..."
+          },
+          {
+            "evidence_id": "EV-53A3E4E0",
+            "source": "CalRecycle \u2013 SB 54 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From CalRecycle \u2013 SB 54 Packaging EPR listing] See all CalRecycle lists and previous messages."
+          },
+          {
+            "evidence_id": "EV-7231F849",
+            "source": "CalRecycle \u2013 SB 54 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From CalRecycle \u2013 SB 54 Packaging EPR listing] Explore Advisory Board"
+          },
+          {
+            "evidence_id": "EV-40E6117C",
+            "source": "Colorado CDPHE \u2013 Producer Responsibility Program",
+            "signal_type": "Partnership / Joint development",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "In 2025, the Colorado Department of Public Health and Environment approved Circular Action Alliance\u2019..."
+          },
+          {
+            "evidence_id": "EV-F577AEFE",
+            "source": "CEN/TC 261 \u2013 Packaging (CEN/CENELEC)",
+            "signal_type": "Regulatory milestone",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": ""
+          },
+          {
+            "evidence_id": "EV-5BDFBAA9",
+            "source": "Circular Action Alliance \u2013 Oregon",
+            "signal_type": "Partnership / Joint development",
+            "role": "Certification / Testing Lab",
+            "age_days": 26,
+            "final_weight": 0.0,
+            "excerpt": "The Plastic Pollution and Recycling Modernization Act requires producers of residential and commerci..."
+          },
+          {
+            "evidence_id": "EV-C7896E37",
+            "source": "Circular Action Alliance \u2013 Colorado",
+            "signal_type": "Partnership / Joint development",
+            "role": "Certification / Testing Lab",
+            "age_days": 186,
+            "final_weight": 0.0,
+            "excerpt": "Colorado\u2019s Producer Responsibility program for packaging and paper products requires covered produce..."
+          }
+        ]
+      }
+    },
+    "(not detected \u2014 see source)|(not detected \u2014 see source)": {
+      "market": "(not detected \u2014 see source)",
+      "technology": "(not detected \u2014 see source)",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 98,
+      "num_evidence_items": 21,
+      "evidence_ids": [
+        "EV-6C980836",
+        "EV-FABAFE8A",
+        "EV-E8F46056",
+        "EV-9BD06BCF",
+        "EV-DBDA60A9",
+        "EV-14AC50D2",
+        "EV-9D522E59",
+        "EV-CDBCF77F",
+        "EV-F812AD2C",
+        "EV-D1D0D491",
+        "EV-FBA47D6E",
+        "EV-1DE3274D",
+        "EV-542C6ED3",
+        "EV-9C0CE691",
+        "EV-362150AE",
+        "EV-57DA08C0",
+        "EV-D0A60880",
+        "EV-0FFB8EBE",
+        "EV-B9C0E7C3",
+        "EV-51C6C8C8",
+        "EV-EC528F31"
+      ],
+      "confidence_penalties": {
+        "mapping_uncertainty": -10
+      },
+      "confidence_bonuses": {
+        "diversity": 5,
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "High Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.334371",
+      "detailed_audit": {
+        "cell": "(not detected \u2014 see source) \u00d7 (not detected \u2014 see source)",
+        "timestamp": "2026-06-14T19:51:25.334371",
+        "num_evidence_items": 21,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {
+            "mapping_uncertainty": -10
+          },
+          "bonuses": {
+            "diversity": 5,
+            "recency": 3
+          },
+          "total_confidence": 98
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-6C980836",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Latest Packaging News by Packaging Europe"
+          },
+          {
+            "evidence_id": "EV-FABAFE8A",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Patent / IP",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 News listing] The ultimate guide to packaging innovation in 2026"
+          },
+          {
+            "evidence_id": "EV-E8F46056",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Capacity expansion / Capex",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 News listing] How packaging data gaps can impact compliance and investment"
+          },
+          {
+            "evidence_id": "EV-9BD06BCF",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Patent / IP",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 News listing] Fold-and-squeeze paper pack dispenses 98% of liquid product f..."
+          },
+          {
+            "evidence_id": "EV-DBDA60A9",
+            "source": "Sustainable Packaging Coalition (SPC / GreenBlue)",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Explore upcoming and past events from the SPC | Explore our pillars and what they stand for | Keep u..."
+          },
+          {
+            "evidence_id": "EV-14AC50D2",
+            "source": "FTC \u2013 Green Guides",
+            "signal_type": "Patent / IP",
+            "role": "Regulatory / Standards Body",
+            "age_days": 4601,
+            "final_weight": 0.0,
+            "excerpt": "The Green Guides were issued to help marketers ensure that the claims they are making are true and s..."
+          },
+          {
+            "evidence_id": "EV-9D522E59",
+            "source": "Colorado CDPHE \u2013 Producer Responsibility Program",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Colorado CDPHE \u2013 Producer Responsibility Program listing] Producer Responsibility Advisory Boa..."
+          },
+          {
+            "evidence_id": "EV-CDBCF77F",
+            "source": "Colorado CDPHE \u2013 Producer Responsibility Program",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Colorado CDPHE \u2013 Producer Responsibility Program listing] Board members meet monthly to discus..."
+          },
+          {
+            "evidence_id": "EV-F812AD2C",
+            "source": "Maine DEP \u2013 EPR Stewardship Program for Packaging",
+            "signal_type": "Patent / IP",
+            "role": "Waste/Recycling Operator / MRF",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Stay Informed: Recent Changes and Progress in the Packaging Stewardship Program (March 17, 2026) | S..."
+          },
+          {
+            "evidence_id": "EV-D1D0D491",
+            "source": "Minnesota PCA \u2013 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Brand Owner / CPG",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "In early 2024, Minnesota\u2019s extended producer responsibility bill for packaging, food packaging, and ..."
+          },
+          {
+            "evidence_id": "EV-FBA47D6E",
+            "source": "Minnesota PCA \u2013 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Minnesota PCA \u2013 Packaging EPR listing] Packaging Waste and Cost Reduction Act (w-ps1-05a)"
+          },
+          {
+            "evidence_id": "EV-1DE3274D",
+            "source": "Minnesota PCA \u2013 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Minnesota PCA \u2013 Packaging EPR listing] Packaging Waste and Cost Reduction Act - impacted parti..."
+          },
+          {
+            "evidence_id": "EV-542C6ED3",
+            "source": "Minnesota PCA \u2013 Packaging EPR",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Minnesota PCA \u2013 Packaging EPR listing] appoints an advisory board"
+          },
+          {
+            "evidence_id": "EV-9C0CE691",
+            "source": "CCME \u2013 EPR Guidance for Plastics",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "%PDF-1.6 %\ufffd\ufffd\ufffd\ufffd 5686 0 obj <> endobj 5705 0 obj <>/Encrypt 5687 0 R/Filter/FlateDecode/ID[]/Index[568..."
+          },
+          {
+            "evidence_id": "EV-362150AE",
+            "source": "EPPA (European Paper Packaging Alliance)",
+            "signal_type": "Partnership / Joint development",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "The European Paper Packaging Alliance is a not-for-profit association promoting sustainability and c..."
+          },
+          {
+            "evidence_id": "EV-57DA08C0",
+            "source": "ISO 18601 \u2013 Packaging & Environment",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 30,
+            "final_weight": 0.0,
+            "excerpt": "ISO 18601:2013 specifies requirements and procedures for the other International Standards in this s..."
+          },
+          {
+            "evidence_id": "EV-D0A60880",
+            "source": "ISO 18601 \u2013 Packaging & Environment",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 30,
+            "final_weight": 0.0,
+            "excerpt": "[From ISO 18601 \u2013 Packaging & Environment listing] Sustainable Development Goals"
+          },
+          {
+            "evidence_id": "EV-0FFB8EBE",
+            "source": "ISO 18601 \u2013 Packaging & Environment",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 30,
+            "final_weight": 0.0,
+            "excerpt": "[From ISO 18601 \u2013 Packaging & Environment listing] 11 Sustainable Cities and Communities"
+          },
+          {
+            "evidence_id": "EV-B9C0E7C3",
+            "source": "Ellen MacArthur Foundation",
+            "signal_type": "Material performance claim",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Through design, we can eliminate waste and pollution, circulate products and materials, and regenera..."
+          },
+          {
+            "evidence_id": "EV-51C6C8C8",
+            "source": "Ellen MacArthur Foundation",
+            "signal_type": "Material performance claim",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Ellen MacArthur Foundation listing] How to Prevent Plastic Pollution and Eliminate WasteDiscov..."
+          },
+          {
+            "evidence_id": "EV-EC528F31",
+            "source": "Ellen MacArthur Foundation",
+            "signal_type": "Material performance claim",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Ellen MacArthur Foundation listing] Keeping fashion and textiles in useTogether we can tackle ..."
+          }
+        ]
+      }
+    },
+    "Industrial / Specialty \u2013 Chemicals / Aggressive contents|Recyclability enabling tech (de-inking, wash-off, adhesive releasability)": {
+      "market": "Industrial / Specialty \u2013 Chemicals / Aggressive contents",
+      "technology": "Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 68,
+      "num_evidence_items": 1,
+      "evidence_ids": [
+        "EV-AF547C70"
+      ],
+      "confidence_penalties": {
+        "sparsity": -15,
+        "single_source": -10,
+        "single_role": -10
+      },
+      "confidence_bonuses": {
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "Medium Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.338115",
+      "detailed_audit": {
+        "cell": "Industrial / Specialty \u2013 Chemicals / Aggressive contents \u00d7 Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+        "timestamp": "2026-06-14T19:51:25.338115",
+        "num_evidence_items": 1,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {
+            "sparsity": -15,
+            "single_source": -10,
+            "single_role": -10
+          },
+          "bonuses": {
+            "recency": 3
+          },
+          "total_confidence": 68
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-AF547C70",
+            "source": "Packaging Europe \u2013 News",
+            "signal_type": "Patent / IP",
+            "role": "Technology Provider",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 News listing] SK Chemicals\u2019 seven plastic materials confirmed compatible wi..."
+          }
+        ]
+      }
+    },
+    "(not detected \u2014 see source)|Paperboard Cartons \u2013 Barrier & grease-resistant": {
+      "market": "(not detected \u2014 see source)",
+      "technology": "Paperboard Cartons \u2013 Barrier & grease-resistant",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 68,
+      "num_evidence_items": 1,
+      "evidence_ids": [
+        "EV-446A1B20"
+      ],
+      "confidence_penalties": {
+        "sparsity": -15,
+        "single_source": -10,
+        "single_role": -10
+      },
+      "confidence_bonuses": {
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "Medium Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.340299",
+      "detailed_audit": {
+        "cell": "(not detected \u2014 see source) \u00d7 Paperboard Cartons \u2013 Barrier & grease-resistant",
+        "timestamp": "2026-06-14T19:51:25.340299",
+        "num_evidence_items": 1,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {
+            "sparsity": -15,
+            "single_source": -10,
+            "single_role": -10
+          },
+          "bonuses": {
+            "recency": 3
+          },
+          "total_confidence": 68
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-446A1B20",
+            "source": "Packaging Europe \u2013 Sustainability Topic Hub",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "[From Packaging Europe \u2013 Sustainability Topic Hub listing] Fresh-fibre fluting added to Holmen\u2019s \u2018ul..."
+          }
+        ]
+      }
+    },
+    "Food \u2013 Ambient Snacks & Bakery|Paper-based Flexibles \u2013 Recyclable barrier coatings": {
+      "market": "Food \u2013 Ambient Snacks & Bakery",
+      "technology": "Paper-based Flexibles \u2013 Recyclable barrier coatings",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 88,
+      "num_evidence_items": 2,
+      "evidence_ids": [
+        "EV-1693BB88",
+        "EV-B787B82D"
+      ],
+      "confidence_penalties": {
+        "sparsity": -5,
+        "mapping_uncertainty": -10
+      },
+      "confidence_bonuses": {
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "High Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.342720",
+      "detailed_audit": {
+        "cell": "Food \u2013 Ambient Snacks & Bakery \u00d7 Paper-based Flexibles \u2013 Recyclable barrier coatings",
+        "timestamp": "2026-06-14T19:51:25.342720",
+        "num_evidence_items": 2,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {
+            "sparsity": -5,
+            "mapping_uncertainty": -10
+          },
+          "bonuses": {
+            "recency": 3
+          },
+          "total_confidence": 88
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-1693BB88",
+            "source": "Paper360\u00b0 (TAPPI)",
+            "signal_type": "Material performance claim",
+            "role": "Certification / Testing Lab",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Paper360\u00b0 covers fiber systems, paper & packaging technology, coatings, and barriers. Published by T..."
+          },
+          {
+            "evidence_id": "EV-B787B82D",
+            "source": "Packaging World \u2013 EMF 2030 Coverage",
+            "signal_type": "Pilot / Trial / Customer validation",
+            "role": "Brand Owner / CPG",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Packaging World analysis of the Ellen MacArthur Foundation's 2030 progress report on plastics packag..."
+          }
+        ]
+      }
+    },
+    "Food \u2013 Ambient Snacks & Bakery|Recyclability enabling tech (de-inking, wash-off, adhesive releasability)": {
+      "market": "Food \u2013 Ambient Snacks & Bakery",
+      "technology": "Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+      "pmf_score": 15.0,
+      "sub_scores": {
+        "desirability": 0.0,
+        "feasibility": 0,
+        "viability": 0.0,
+        "risk_penalty": 0.0
+      },
+      "confidence_score": 58,
+      "num_evidence_items": 1,
+      "evidence_ids": [
+        "EV-F092B914"
+      ],
+      "confidence_penalties": {
+        "sparsity": -15,
+        "single_source": -10,
+        "single_role": -10,
+        "mapping_uncertainty": -10
+      },
+      "confidence_bonuses": {
+        "recency": 3
+      },
+      "shift_expectation": "Major Shift Away",
+      "confidence_level": "Medium Confidence",
+      "calculation_timestamp": "2026-06-14T19:51:25.344809",
+      "detailed_audit": {
+        "cell": "Food \u2013 Ambient Snacks & Bakery \u00d7 Recyclability enabling tech (de-inking, wash-off, adhesive releasability)",
+        "timestamp": "2026-06-14T19:51:25.344809",
+        "num_evidence_items": 1,
+        "pmf_components": {
+          "desirability": 0.0,
+          "feasibility": 0,
+          "viability": 0.0,
+          "risk_penalty": 0.0
+        },
+        "pmf_calculation": {
+          "desirability_contribution": 0.0,
+          "feasibility_contribution": 0.0,
+          "viability_contribution": 0.0,
+          "risk_contribution": 15.0,
+          "total_pmf": 15.0
+        },
+        "confidence_calculation": {
+          "penalties": {
+            "sparsity": -15,
+            "single_source": -10,
+            "single_role": -10,
+            "mapping_uncertainty": -10
+          },
+          "bonuses": {
+            "recency": 3
+          },
+          "total_confidence": 58
+        },
+        "evidence_details": [
+          {
+            "evidence_id": "EV-F092B914",
+            "source": "Environment and Climate Change Canada \u2013 EPR Overview",
+            "signal_type": "Regulatory milestone",
+            "role": "Regulatory / Standards Body",
+            "age_days": 18,
+            "final_weight": 0.0,
+            "excerpt": "Federal Government of Canada policy overview on Extended Producer Responsibility (EPR). Canada has p..."
+          }
+        ]
+      }
+    }
+  }
+}

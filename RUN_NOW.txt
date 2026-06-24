@@ -1,0 +1,112 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  🚀 RUN YOUR PMF SYSTEM IN 3 STEPS 🚀                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+EVERYTHING IS READY - Just run these commands!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Open Terminal 1 - Generate PMF Scores
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd /Users/srivatsabalasubramanyam/Desktop/pmf-pipeline/backend
+source venv/bin/activate
+python agent4.py
+
+⏱️  Takes ~10 seconds
+✓ Creates: agent4_pmf_matrix.csv, audit_trail.json, summary.json
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: Same Terminal - Start API Server
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+python app.py
+
+✓ Running on http://localhost:5000
+✓ Endpoint: /api/pmf/scores
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: Open Terminal 2 - Start React Dashboard
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd /Users/srivatsabalasubramanyam/Desktop/pmf-pipeline/frontend
+npm run dev
+
+✓ Opens http://localhost:5173 in your browser
+✓ Shows interactive heat map dashboard
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ DONE! Your PMF System is Running
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The dashboard shows:
+  • Interactive heat map (Market × Technology grid)
+  • PMF scores with color coding
+  • Confidence indicators (stars)
+  • Summary statistics
+  • Click cells to drill down into details
+
+Try:
+  ✓ Hover over cells to see details
+  ✓ Click cells to see PMF breakdown
+  ✓ Use filters to find high-PMF / high-confidence combinations
+  ✓ Scroll through evidence details
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📍 KEY FILES & WHAT THEY DO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Backend:
+  agent4.py                    → Scoring engine (generates PMF matrix)
+  app.py                       → Flask API server
+  agent4_config.yaml           → Tunable scoring weights
+  output/agent4_pmf_matrix.csv → Heat map data (CSV)
+
+Frontend:
+  PMFDashboard.jsx             → React component (heat map)
+  App.jsx                      → Main app wrapper
+  npm run dev                  → Starts development server
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 CUSTOMIZATION TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Change PMF Weights:
+  Edit: backend/agent4_config.yaml
+  Change: pmf_weights (desirability, feasibility, viability, risk_penalty)
+  Re-run: python agent4.py
+
+Add New Evidence:
+  1. Place new evidence CSV in backend/output/
+  2. Run: python agent4.py
+  3. Dashboard updates automatically
+
+Change Dashboard Styling:
+  Edit: frontend/src/PMFDashboard.css
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ QUICK HELP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Port Already in Use?
+  Backend:  Edit backend/app.py, change port: 5000 → 5001
+  Frontend: Edit frontend/vite.config.js, change port: 5173 → 5174
+
+Backend Not Running?
+  • Check Flask server is running on Terminal 1
+  • Dashboard will use sample data as fallback
+
+Need More Info?
+  Read: /Desktop/pmf-pipeline/SETUP_COMPLETE.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ready? → Run the commands above! 🚀
+
+Questions? Check SETUP_COMPLETE.md or the documentation files.
