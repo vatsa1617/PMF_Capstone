@@ -1,0 +1,17 @@
+{
+  "name": "pmf-capstone",
+  "version": "1.0.0",
+  "description": "PMF Dashboard - Sustainable Packaging Innovation",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "functions:build": "echo 'Functions are built by Netlify'"
+  },
+  "dependencies": {
+    "csv-parse": "^5.4.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
+}
