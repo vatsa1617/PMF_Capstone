@@ -26,7 +26,7 @@ export function createSession(userId) {
 }
 
 export function requireAuth(req) {
-  const authHeader = req.headers.get('Authorization');
+  const authHeader = req.headers?.get?.('Authorization') || req.headers?.['authorization'];
 
   if (!authHeader) {
     return {
@@ -47,7 +47,8 @@ export function requireAuth(req) {
     }
 
     return { session, error: null };
-  } catch {
+  } catch (error) {
+    console.error('Auth error:', error);
     return {
       error: 'Invalid authorization header',
       status: 401

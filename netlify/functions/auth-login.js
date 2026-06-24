@@ -48,17 +48,18 @@ export default async (req, context) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
     });
   }
 
   try {
-    const { user_id, password } = JSON.parse(req.body);
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : await req.json?.() || JSON.parse(req.body);
+    const { user_id, password } = body;
 
     if (!user_id || !password) {
       return new Response(
         JSON.stringify({ error: 'User ID and password are required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
 
@@ -72,18 +73,19 @@ export default async (req, context) => {
           user_id,
           message: 'Authentication successful'
         }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
+        { status: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     } else {
       return new Response(
         JSON.stringify({ error: result.message }),
-        { status: 401, headers: { 'Content-Type': 'application/json' } }
+        { status: 401, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
   } catch (error) {
+    console.error('Auth error:', error);
     return new Response(
-      JSON.stringify({ error: 'Invalid request' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: 'Invalid request', details: error.message }),
+      { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   }
 };
