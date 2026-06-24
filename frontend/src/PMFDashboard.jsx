@@ -251,7 +251,7 @@ export default function PMFDashboard({ onLogout }) {
         setLoading(true);
         setError(null);
         const token = localStorage.getItem('authToken');
-        const response = await fetch('http://localhost:5001/api/pmf/scores', {
+        const response = await fetch('/api/pmf-scores', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
